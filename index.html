@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Fabio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+    <section id="intro" class="intro-screen">
+      <div class="code-rain" aria-hidden="true"></div>
+      <div class="terminal">
+        <h1 class="terminal-title">// SECURE TERMINAL</h1>
+        <div id="typing-output" class="typing-output"></div>
+        <p id="access-granted" class="access-granted hidden">Access Granted</p>
+        <button id="enter-btn" class="enter-btn hidden" type="button">Enter Celebration</button>
+      </div>
+    </section>
+
+    <main id="birthday-main" class="birthday-main hidden" aria-hidden="true">
+      <header class="hero section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-up">
+          <p class="eyebrow">A special celebration protocol 💜</p>
+          <h1>Happy Birthday Fabio 🎉</h1>
+          <p class="hero-subtitle">From encrypted vibes to pure celebration energy.</p>
+          <button id="surprise-btn" class="surprise-btn" type="button">Launch Surprise ✨</button>
+        </div>
+      </header>
+
+      <section class="countdown section fade-up">
+        <h2>Birthday Status</h2>
+        <p id="countdown-text" class="countdown-text">Calculating celebration timer...</p>
+      </section>
+
+      <section class="gallery section fade-up">
+        <h2>Memory Gallery</h2>
+        <div class="gallery-grid">
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80" type="button">
+            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" alt="Birthday cake with candles" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80" type="button">
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" alt="Colorful party confetti" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80" type="button">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="Friends celebrating with sparklers" loading="lazy" />
+          </button>
+          <button class="gallery-item" data-full="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80" type="button">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Balloons floating in the sky" loading="lazy" />
+          </button>
+        </div>
+      </section>
+
+      <section class="messages section fade-up">
+        <h2>Birthday Messages</h2>
+        <div class="message-cards">
+          <article class="message-card">"Wishing you an epic year ahead, Fabio!"</article>
+          <article class="message-card">"May your code compile and your dreams ship fast 🚀"</article>
+          <article class="message-card">"Stay brilliant, stay joyful, and keep inspiring!"</article>
+        </div>
+      </section>
+
+      <section class="music-control section fade-up">
+        <h2>Birthday Beat</h2>
+        <button id="music-toggle" type="button" class="music-toggle">Play Music ▶</button>
+        <p class="music-note">Muted by default. Tap to start/pause music.</p>
+      </section>
+    </main>
+
+    <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+      <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close photo">✕</button>
+      <img id="lightbox-image" src="" alt="Expanded gallery image" />
+    </div>
+
+    <audio id="bg-music" loop preload="none">
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7f7c078858.mp3?filename=happy-birthday-to-you-piano-version-13976.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
