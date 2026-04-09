@@ -41,6 +41,12 @@
         <p id="countdown-text" class="countdown-text">Calculating celebration timer...</p>
       </section>
 
+      <section class="cake-3d section fade-up">
+        <h2>3D Birthday Cake Experience 🎂</h2>
+        <p class="cake-subtitle">Rotate, zoom, and explore Fabio's celebration cake in 3D.</p>
+        <div id="cake-3d-container" class="cake-3d-container" aria-label="Interactive 3D birthday cake"></div>
+      </section>
+
       <section class="gallery section fade-up">
         <h2>Memory Gallery</h2>
         <div class="gallery-grid">
@@ -85,5 +91,14 @@
     </audio>
 
     <script src="script.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="cake-scene.js"></script>
   </body>
 </html>
