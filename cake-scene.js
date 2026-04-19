@@ -7,6 +7,10 @@ const container = document.getElementById("cake-3d-container");
 if (!container) {
   console.error("[cake-3d] Missing #cake-3d-container element.");
 } else {
+  const loadingLabel = document.getElementById("cake-loading");
+  const modelUrl =
+    container.dataset.modelUrl || "models/cake.glb";
+
   // Scene setup
   const scene = new THREE.Scene();
 
@@ -44,7 +48,7 @@ if (!container) {
   pointLight.position.set(-2.2, 2.5, 2.4);
   scene.add(pointLight);
 
-  // Subtle stage to receive shadows
+  // Stage to receive shadows
   const ground = new THREE.Mesh(
     new THREE.CircleGeometry(3.2, 64),
     new THREE.MeshStandardMaterial({ color: 0xffcde9, roughness: 0.7, metalness: 0.05 })
@@ -66,7 +70,7 @@ if (!container) {
   controls.target.set(0, 0.35, 0);
   controls.update();
 
-  let cakeRoot = null;
+  let modelRoot = null;
   let userInteracting = false;
   let destroyed = false;
 
@@ -99,7 +103,7 @@ if (!container) {
     controls.update();
   }
 
-  function applyCakeShadows(root) {
+  function applyShadows(root) {
     root.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
@@ -108,75 +112,23 @@ if (!container) {
     });
   }
 
-  function createFallbackCake() {
-    console.warn("[cake-3d] Falling back to procedural cake model.");
-
-    const group = new THREE.Group();
-
-    const tiers = [
-      { r: 1.15, h: 0.55, y: -0.55, color: 0xffd5ea },
-      { r: 0.82, h: 0.45, y: -0.02, color: 0xffb4dd },
-      { r: 0.54, h: 0.36, y: 0.43, color: 0xff91cf },
-    ];
-
-    tiers.forEach((tier) => {
-      const mesh = new THREE.Mesh(
-        new THREE.CylinderGeometry(tier.r, tier.r * 0.96, tier.h, 48),
-        new THREE.MeshStandardMaterial({
-          color: tier.color,
-          roughness: 0.42,
-          metalness: 0.08,
-        })
-      );
-      mesh.position.y = tier.y;
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-      group.add(mesh);
-    });
-
-    const candleCount = 6;
-    for (let i = 0; i < candleCount; i += 1) {
-      const angle = (i / candleCount) * Math.PI * 2;
-      const candle = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.045, 0.045, 0.38, 20),
-        new THREE.MeshStandardMaterial({ color: 0xfff0f8, roughness: 0.35 })
-      );
-      candle.position.set(Math.cos(angle) * 0.32, 0.8, Math.sin(angle) * 0.32);
-      candle.castShadow = true;
-      group.add(candle);
-
-      const flame = new THREE.Mesh(
-        new THREE.SphereGeometry(0.05, 12, 12),
-        new THREE.MeshStandardMaterial({
-          color: 0xffd166,
-          emissive: 0xff9c3d,
-          emissiveIntensity: 1.2,
-        })
-      );
-      flame.position.copy(candle.position);
-      flame.position.y += 0.24;
-      group.add(flame);
-    }
-
-    return group;
-  }
-
-  // Model loading
+  // Model loading (GLB/GLTF)
   const loader = new GLTFLoader();
   loader.load(
-    "/public/models/cake.glb",
+    modelUrl,
     (gltf) => {
-      cakeRoot = gltf.scene;
-      applyCakeShadows(cakeRoot);
-      centerAndFrameModel(cakeRoot);
-      scene.add(cakeRoot);
+      modelRoot = gltf.scene;
+      applyShadows(modelRoot);
+      centerAndFrameModel(modelRoot);
+      scene.add(modelRoot);
+      if (loadingLabel) loadingLabel.remove();
     },
     undefined,
     (error) => {
-      console.error("[cake-3d] Failed to load /public/models/cake.glb", error);
-      cakeRoot = createFallbackCake();
-      centerAndFrameModel(cakeRoot);
-      scene.add(cakeRoot);
+      console.error(`[cake-3d] Failed to load model: ${modelUrl}`, error);
+      if (loadingLabel) {
+        loadingLabel.textContent = "Could not load model. Please check the model URL.";
+      }
     }
   );
 
@@ -187,11 +139,11 @@ if (!container) {
 
     const elapsed = clock.getElapsedTime();
 
-    if (cakeRoot) {
+    if (modelRoot) {
       const floatingBase = 0.12;
       if (!userInteracting) {
-        cakeRoot.rotation.y += 0.0025;
-        cakeRoot.position.y = floatingBase + Math.sin(elapsed * 0.8) * 0.03;
+        modelRoot.rotation.y += 0.0025;
+        modelRoot.position.y = floatingBase + Math.sin(elapsed * 0.8) * 0.03;
       }
     }
 
