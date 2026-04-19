@@ -230,6 +230,20 @@ body {
   display: block;
 }
 
+
+.cake-loading {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  color: #ffeaf8;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
