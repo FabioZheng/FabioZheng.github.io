@@ -8,7 +8,7 @@ if (!container) {
   console.error("Missing #cake-3d-container");
 } else {
   const loadingLabel = document.getElementById("cake-loading");
-  const modelUrl = container.dataset.modelUrl || "models/source/cake.fbx";
+  const modelUrl = container.dataset.modelUrl || "models/source/picnic.fbx";
   const texturePath = container.dataset.texturePath || "models/textures/";
 
   const scene = new THREE.Scene();
