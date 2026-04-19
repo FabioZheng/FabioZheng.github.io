@@ -12,7 +12,7 @@ FabioZheng.github.io/
 ├─ cake-scene.js
 └─ models/
    ├─ source/
-   │  └─ cake.fbx
+   │  └─ picnic.fbx
    └─ textures/
       ├─ texture1.png
       ├─ texture2.jpg
@@ -21,7 +21,7 @@ FabioZheng.github.io/
 
 Default paths used by the site:
 
-- FBX model: `models/source/cake.fbx`
+- FBX model: `models/source/picnic.fbx`
 - Texture folder: `models/textures/`
 
 ## Change model or texture path
@@ -31,7 +31,7 @@ Update attributes on `#cake-3d-container` in `index.html`:
 ```html
 <div
   id="cake-3d-container"
-  data-model-url="models/source/cake.fbx"
+  data-model-url="models/source/picnic.fbx"
   data-texture-path="models/textures/"
 ></div>
 ```
