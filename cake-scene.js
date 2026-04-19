@@ -8,7 +8,7 @@ if (!container) {
   console.error("Missing #cake-3d-container");
 } else {
   const loadingLabel = document.getElementById("cake-loading");
-  const modelUrl = container.dataset.modelUrl || "models/source/cake.fbx";
+  const modelUrl = container.dataset.modelUrl || "models/source/picnic.fbx";
   const texturePath = container.dataset.texturePath || "models/textures/";
 
   const scene = new THREE.Scene();
@@ -42,6 +42,10 @@ if (!container) {
   const loader = new FBXLoader();
   loader.setResourcePath(texturePath);
 
+  if (window.location.protocol === "file:" && loadingLabel) {
+    loadingLabel.textContent = "3D model loading requires a local web server (not file://).";
+  }
+
   loader.load(
     modelUrl,
     (model) => {
@@ -56,10 +60,18 @@ if (!container) {
       scene.add(model);
       if (loadingLabel) loadingLabel.remove();
     },
-    undefined,
-    () => {
+    (event) => {
+      if (!loadingLabel || !event.total) return;
+      const progress = Math.round((event.loaded / event.total) * 100);
+      loadingLabel.textContent = `Loading 3D model... ${progress}%`;
+    },
+    (error) => {
+      console.error("FBX model failed to load", { modelUrl, error });
       if (loadingLabel) {
-        loadingLabel.textContent = `Unable to load ${modelUrl}`;
+        const isFileProtocol = window.location.protocol === "file:";
+        loadingLabel.textContent = isFileProtocol
+          ? "Cannot load model from file://. Start a local server and reopen the page."
+          : `Unable to load ${modelUrl}`;
       }
     }
   );
