@@ -147,6 +147,7 @@ enterBtn.addEventListener("click", () => {
     intro.classList.add("hidden");
     birthdayMain.classList.remove("hidden");
     birthdayMain.removeAttribute("aria-hidden");
+    birthdayMain.querySelectorAll(".fade-up").forEach((el) => el.classList.add("visible"));
     launchCelebration();
   }, 850);
 });
