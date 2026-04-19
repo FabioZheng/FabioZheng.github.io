@@ -13,10 +13,7 @@ const enterBtn = document.getElementById("enter-btn");
 const intro = document.getElementById("intro");
 const birthdayMain = document.getElementById("birthday-main");
 const codeRain = document.querySelector(".code-rain");
-const countdownText = document.getElementById("countdown-text");
 const surpriseBtn = document.getElementById("surprise-btn");
-const musicToggle = document.getElementById("music-toggle");
-const bgMusic = document.getElementById("bg-music");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.getElementById("lightbox-close");
@@ -57,33 +54,6 @@ async function runIntroSequence() {
   enterBtn.classList.remove("hidden");
 }
 
-function updateCountdown() {
-  const now = new Date();
-  const birthdayMonth = 3;
-  const birthdayDay = 2;
-  const year = now.getFullYear();
-  const target = new Date(year, birthdayMonth, birthdayDay);
-
-  if (
-    now.getMonth() === birthdayMonth &&
-    now.getDate() === birthdayDay
-  ) {
-    countdownText.textContent = "It's Fabio's Birthday! 🎉";
-    return;
-  }
-
-  if (now > target) {
-    target.setFullYear(year + 1);
-  }
-
-  const diff = target - now;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-  countdownText.textContent = `${days} days, ${hours} hours, ${minutes} minutes to go!`;
-}
-
 function setupRevealObserver() {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -111,18 +81,6 @@ function setupGallery() {
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
       lightbox.classList.add("hidden");
-    }
-  });
-}
-
-function setupMusicToggle() {
-  musicToggle.addEventListener("click", async () => {
-    if (bgMusic.paused) {
-      await bgMusic.play();
-      musicToggle.textContent = "Pause Music ⏸";
-    } else {
-      bgMusic.pause();
-      musicToggle.textContent = "Play Music ▶";
     }
   });
 }
@@ -189,6 +147,7 @@ enterBtn.addEventListener("click", () => {
     intro.classList.add("hidden");
     birthdayMain.classList.remove("hidden");
     birthdayMain.removeAttribute("aria-hidden");
+    birthdayMain.querySelectorAll(".fade-up").forEach((el) => el.classList.add("visible"));
     launchCelebration();
   }, 850);
 });
@@ -199,9 +158,7 @@ window.addEventListener("resize", resizeCanvas);
 
 generateCodeRain();
 runIntroSequence();
-updateCountdown();
 setupRevealObserver();
 setupGallery();
-setupMusicToggle();
 resizeCanvas();
 animateFireworks();
