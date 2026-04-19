@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 
 const container = document.getElementById("cake-3d-container");
 
@@ -8,6 +8,8 @@ if (!container) {
   console.error("Missing #cake-3d-container");
 } else {
   const loadingLabel = document.getElementById("cake-loading");
+  const modelUrl = container.dataset.modelUrl || "models/source/cake.fbx";
+  const texturePath = container.dataset.texturePath || "models/textures/";
 
   const scene = new THREE.Scene();
 
@@ -37,12 +39,12 @@ if (!container) {
   controls.target.set(0, 0.5, 0);
   controls.update();
 
-  const loader = new GLTFLoader();
-  loader.load(
-    "models/cake.glb",
-    (gltf) => {
-      const model = gltf.scene;
+  const loader = new FBXLoader();
+  loader.setResourcePath(texturePath);
 
+  loader.load(
+    modelUrl,
+    (model) => {
       const box = new THREE.Box3().setFromObject(model);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
@@ -57,7 +59,7 @@ if (!container) {
     undefined,
     () => {
       if (loadingLabel) {
-        loadingLabel.textContent = "Unable to load models/cake.glb";
+        loadingLabel.textContent = `Unable to load ${modelUrl}`;
       }
     }
   );
