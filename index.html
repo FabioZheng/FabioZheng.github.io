@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday Fabio</title>
+    <title>Happy Birthday Hannah</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,6 +17,9 @@
 
     <section id="intro" class="intro-screen">
       <div class="code-rain" aria-hidden="true"></div>
+      <figure class="intro-photo fade-up">
+        <img src="images/hannah-photo.svg" alt="Portrait of Hannah" />
+      </figure>
       <div class="terminal">
         <h1 class="terminal-title">// SECURE TERMINAL</h1>
         <div id="typing-output" class="typing-output"></div>
@@ -30,14 +33,14 @@
         <div class="hero-overlay"></div>
         <div class="hero-content fade-up">
           <p class="eyebrow">A special celebration protocol 💜</p>
-          <h1>Happy Birthday Fabio 🎉</h1>
+          <h1>Happy Birthday Hannah 🎉</h1>
           <p class="hero-subtitle">From encrypted vibes to pure celebration energy.</p>
           <button id="surprise-btn" class="surprise-btn" type="button">Launch Surprise ✨</button>
         </div>
       </header>
 
       <section class="cake-3d section fade-up">
-        <h2>3D Birthday Cake Model 🎂</h2>
+        <h2>Picnic</h2>
         <p class="cake-subtitle">Open the cake on Sketchfab and jump straight into the interactive 3D view.</p>
         <a
           class="cake-view-btn"
@@ -45,8 +48,21 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          View 3D Cake on Sketchfab
+          join picnic
         </a>
+      </section>
+
+      <section class="special-message section fade-up">
+        <h2>A message from someone special</h2>
+        <div class="special-message-card">
+          <button id="reveal-message-btn" class="surprise-btn" type="button">View text</button>
+          <div id="special-video-wrapper" class="special-video-wrapper hidden">
+            <video id="special-video" controls preload="metadata">
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       </section>
 
       <section class="gallery section fade-up">
@@ -70,7 +86,7 @@
       <section class="messages section fade-up">
         <h2>Birthday Messages</h2>
         <div class="message-cards">
-          <article class="message-card">"Wishing you an epic year ahead, Fabio!"</article>
+          <article class="message-card">"Wishing you an epic year ahead, Hannah!"</article>
           <article class="message-card">"May your code compile and your dreams ship fast 🚀"</article>
           <article class="message-card">"Stay brilliant, stay joyful, and keep inspiring!"</article>
         </div>

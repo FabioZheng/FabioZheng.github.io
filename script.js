@@ -2,9 +2,9 @@ const introLines = [
   "Initializing system...",
   "Accessing secure database...",
   "Decrypting user data...",
-  "Target identified: Fabio",
+  "Target identified: Hannah",
   "Injecting celebration protocol...",
-  "Happy Birthday Fabio 🎂",
+  "Happy Birthday Hannah 🎂",
 ];
 
 const typingOutput = document.getElementById("typing-output");
@@ -18,6 +18,9 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.getElementById("lightbox-close");
 const fireworksCanvas = document.getElementById("fireworks-canvas");
+const revealMessageBtn = document.getElementById("reveal-message-btn");
+const specialVideoWrapper = document.getElementById("special-video-wrapper");
+const specialVideo = document.getElementById("special-video");
 
 function generateCodeRain() {
   const snippets = Array.from({ length: 34 }, () => {
@@ -152,6 +155,18 @@ enterBtn.addEventListener("click", () => {
 });
 
 surpriseBtn.addEventListener("click", launchCelebration);
+
+if (revealMessageBtn && specialVideoWrapper && specialVideo) {
+  revealMessageBtn.addEventListener("click", async () => {
+    specialVideoWrapper.classList.remove("hidden");
+    revealMessageBtn.classList.add("hidden");
+    try {
+      await specialVideo.play();
+    } catch {
+      // Ignore autoplay/playback errors if browser blocks it.
+    }
+  });
+}
 
 window.addEventListener("resize", resizeCanvas);
 
