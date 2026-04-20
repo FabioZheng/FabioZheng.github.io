@@ -89,6 +89,20 @@ body {
   color: var(--neon);
 }
 
+.intro-photo {
+  margin: 0 0 1rem;
+  z-index: 1;
+}
+
+.intro-photo img {
+  width: clamp(130px, 26vw, 200px);
+  height: clamp(130px, 26vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(184, 255, 216, 0.8);
+  box-shadow: 0 0 35px rgba(53, 255, 137, 0.35);
+}
+
 .terminal-title {
   margin: 0 0 1rem;
   font-size: 1rem;
@@ -196,7 +210,8 @@ body {
 
 .cake-3d,
 .gallery,
-.messages {
+.messages,
+.special-message {
   background: rgba(255, 255, 255, 0.13);
   border-radius: 1.2rem;
   margin-top: 1rem;
@@ -255,6 +270,23 @@ body {
 
 .message-card:nth-child(3) {
   animation-delay: 1.1s;
+}
+
+.special-message-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.9rem;
+  padding: 1rem;
+}
+
+.special-video-wrapper {
+  margin-top: 1rem;
+}
+
+.special-video-wrapper video {
+  display: block;
+  width: min(100%, 720px);
+  border-radius: 0.8rem;
 }
 
 .lightbox {
