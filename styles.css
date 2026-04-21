@@ -19,10 +19,11 @@ body {
 }
 
 body {
-  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  font-family: "Nunito", system-ui, -apple-system, sans-serif;
   color: var(--ink);
   overflow-x: hidden;
   background: linear-gradient(180deg, #8f9893 0%, #98a29d 48%, #a8b1ac 100%);
+  text-align: center;
 }
 
 .hidden {
@@ -84,8 +85,9 @@ body {
   border: 1px solid rgba(100, 75, 58, 0.35);
   padding: 0.85rem 1.3rem;
   border-radius: 999px;
-  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
   font-weight: 700;
+  font-size: 1.35rem;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(66, 54, 44, 0.22);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -108,6 +110,7 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: clamp(2rem, 4vw, 4.6rem) 1rem;
+  text-align: center;
 }
 
 .hero {
@@ -140,6 +143,8 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #6b5548;
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
+  font-size: 1.5rem;
 }
 
 .hero h1 {
@@ -147,6 +152,15 @@ body {
   margin: 0.4rem 0 0.8rem;
   color: #44352b;
   text-shadow: 0 2px 0 rgba(239, 230, 214, 0.6);
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  margin-top: 0.2rem;
+  margin-bottom: 0.9rem;
 }
 
 .hero-subtitle {
@@ -167,6 +181,9 @@ body {
   background: linear-gradient(120deg, #f4eddf, #ead7bd);
   box-shadow: 0 8px 20px rgba(79, 60, 46, 0.22);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
 }
 
 .surprise-btn:hover,
@@ -231,6 +248,9 @@ body {
   padding: 1rem;
   border-radius: 1rem;
   animation: float 5s ease-in-out infinite;
+  text-align: center;
+  font-family: "Dancing Script", "Comic Sans MS", cursive;
+  font-size: 1.5rem;
 }
 
 .message-card:nth-child(2) {
@@ -246,6 +266,7 @@ body {
   border: 1px solid rgba(67, 53, 44, 0.2);
   border-radius: 1.1rem;
   padding: 1rem;
+  text-align: center;
 }
 
 .special-video-wrapper {
