@@ -195,7 +195,6 @@ h2 {
 }
 
 .cake-3d,
-.gallery,
 .messages,
 .special-message {
   background: var(--card);
@@ -213,31 +212,6 @@ h2 {
 }
 
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-item {
-  border: 2px solid rgba(67, 53, 44, 0.2);
-  padding: 0;
-  border-radius: 1rem;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.08) rotate(-1deg);
-}
-
 .message-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -251,8 +225,9 @@ h2 {
   border-radius: 1rem;
   animation: float 5s ease-in-out infinite;
   text-align: center;
-  font-family: "Dancing Script", "Comic Sans MS", cursive;
-  font-size: 1.5rem;
+  font-family: "Nunito", system-ui, -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .message-card:nth-child(2) {
@@ -279,36 +254,6 @@ h2 {
   display: block;
   width: min(100%, 720px);
   border-radius: 0.8rem;
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(5, 0, 20, 0.92);
-  display: grid;
-  place-items: center;
-  z-index: 99;
-}
-
-.lightbox img {
-  max-width: min(90vw, 980px);
-  max-height: 82vh;
-  border-radius: 1.1rem;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  border-radius: 50%;
-  background: #efe6d6;
-  color: #5e483a;
-  font-size: 1.4rem;
-  cursor: pointer;
 }
 
 .fade-up {
