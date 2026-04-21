@@ -73,12 +73,14 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 20%, rgba(0, 0, 0, 0.38) 100%);
+  pointer-events: none;
 }
 
 .enter-btn {
   position: absolute;
   left: 50%;
   bottom: 1.1rem;
+  z-index: 2;
   transform: translateX(-50%);
   background: linear-gradient(120deg, #f2eadc, #e7d8bf);
   color: #5f4737;
