@@ -114,7 +114,7 @@ function animateSnowfall() {
     if (flake.x < -10) flake.x = window.innerWidth + 10;
 
     fireworksCtx.globalAlpha = 0.75;
-    fireworksCtx.fillStyle = "#ffffff";
+    fireworksCtx.fillStyle = "#f3ebdb";
     fireworksCtx.beginPath();
     fireworksCtx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
     fireworksCtx.fill();
