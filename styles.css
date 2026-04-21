@@ -42,7 +42,7 @@ body {
   min-height: 100vh;
   background:
     linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.58)),
-    url("images/back.webp") center / cover no-repeat;
+    url("images/back.jpg") center / cover no-repeat;
   display: grid;
   place-items: center;
   overflow: hidden;
