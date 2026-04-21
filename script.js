@@ -3,9 +3,6 @@ const intro = document.getElementById("intro");
 const birthdayPostcard = document.querySelector(".birthday-postcard");
 const birthdayMain = document.getElementById("birthday-main");
 const surpriseBtn = document.getElementById("surprise-btn");
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightbox-image");
-const lightboxClose = document.getElementById("lightbox-close");
 const fireworksCanvas = document.getElementById("fireworks-canvas");
 const revealMessageBtn = document.getElementById("reveal-message-btn");
 const specialVideoWrapper = document.getElementById("special-video-wrapper");
@@ -24,22 +21,6 @@ function setupRevealObserver() {
   );
 
   document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
-}
-
-function setupGallery() {
-  document.querySelectorAll(".gallery-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      lightboxImage.src = item.dataset.full;
-      lightbox.classList.remove("hidden");
-    });
-  });
-
-  lightboxClose.addEventListener("click", () => lightbox.classList.add("hidden"));
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) {
-      lightbox.classList.add("hidden");
-    }
-  });
 }
 
 const fireworksCtx = fireworksCanvas.getContext("2d");
@@ -160,6 +141,5 @@ if (revealMessageBtn && specialVideoWrapper && specialVideo) {
 window.addEventListener("resize", resizeCanvas);
 
 setupRevealObserver();
-setupGallery();
 resizeCanvas();
 animateFireworks();
