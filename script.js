@@ -1,16 +1,6 @@
-const introLines = [
-  "Initializing system...",
-  "Accessing secure database...",
-  "Decrypting user data...",
-  "Target identified: Hannah",
-  "Injecting celebration protocol...",
-  "Happy Birthday Hannah 🎂",
-];
-
-const typingOutput = document.getElementById("typing-output");
-const accessGranted = document.getElementById("access-granted");
 const enterBtn = document.getElementById("enter-btn");
 const intro = document.getElementById("intro");
+const birthdayPostcard = document.querySelector(".birthday-postcard");
 const birthdayMain = document.getElementById("birthday-main");
 const surpriseBtn = document.getElementById("surprise-btn");
 const lightbox = document.getElementById("lightbox");
@@ -20,33 +10,6 @@ const fireworksCanvas = document.getElementById("fireworks-canvas");
 const revealMessageBtn = document.getElementById("reveal-message-btn");
 const specialVideoWrapper = document.getElementById("special-video-wrapper");
 const specialVideo = document.getElementById("special-video");
-
-async function typeLine(line, container) {
-  const lineEl = document.createElement("p");
-  lineEl.className = "typing-line";
-  container.appendChild(lineEl);
-
-  for (const char of line) {
-    lineEl.textContent += char;
-    await new Promise((resolve) => setTimeout(resolve, 28));
-  }
-}
-
-async function runIntroSequence() {
-  const cursor = document.createElement("span");
-  cursor.className = "cursor";
-  typingOutput.appendChild(cursor);
-
-  for (const line of introLines) {
-    cursor.remove();
-    await typeLine(`> ${line}`, typingOutput);
-    typingOutput.appendChild(cursor);
-    await new Promise((resolve) => setTimeout(resolve, 280));
-  }
-
-  accessGranted.classList.remove("hidden");
-  enterBtn.classList.remove("hidden");
-}
 
 function setupRevealObserver() {
   const observer = new IntersectionObserver(
@@ -168,9 +131,9 @@ function launchCelebration() {
 }
 
 enterBtn.addEventListener("click", () => {
-  intro.style.transition = "opacity 0.9s ease, transform 0.9s ease";
-  intro.style.opacity = "0";
-  intro.style.transform = "scale(1.02)";
+  if (birthdayPostcard) {
+    birthdayPostcard.classList.add("page-turning");
+  }
 
   setTimeout(() => {
     intro.classList.add("hidden");
@@ -196,7 +159,6 @@ if (revealMessageBtn && specialVideoWrapper && specialVideo) {
 
 window.addEventListener("resize", resizeCanvas);
 
-runIntroSequence();
 setupRevealObserver();
 setupGallery();
 resizeCanvas();
