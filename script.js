@@ -12,7 +12,6 @@ const accessGranted = document.getElementById("access-granted");
 const enterBtn = document.getElementById("enter-btn");
 const intro = document.getElementById("intro");
 const birthdayMain = document.getElementById("birthday-main");
-const codeRain = document.querySelector(".code-rain");
 const surpriseBtn = document.getElementById("surprise-btn");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
@@ -21,14 +20,6 @@ const fireworksCanvas = document.getElementById("fireworks-canvas");
 const revealMessageBtn = document.getElementById("reveal-message-btn");
 const specialVideoWrapper = document.getElementById("special-video-wrapper");
 const specialVideo = document.getElementById("special-video");
-
-function generateCodeRain() {
-  const snippets = Array.from({ length: 34 }, () => {
-    const left = Math.random().toString(16).slice(2, 10);
-    return `0x${left} :: ${Math.random().toString(2).slice(2, 30)}`;
-  });
-  codeRain.textContent = snippets.join("\n");
-}
 
 async function typeLine(line, container) {
   const lineEl = document.createElement("p");
@@ -90,10 +81,44 @@ function setupGallery() {
 
 const fireworksCtx = fireworksCanvas.getContext("2d");
 let fireworks = [];
+let snowflakes = [];
 
 function resizeCanvas() {
   fireworksCanvas.width = window.innerWidth;
   fireworksCanvas.height = window.innerHeight;
+  snowflakes = createSnowflakes();
+}
+
+function createSnowflakes() {
+  const density = Math.max(70, Math.floor((window.innerWidth * window.innerHeight) / 20000));
+  return Array.from({ length: density }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    radius: Math.random() * 1.8 + 0.8,
+    speedY: Math.random() * 0.8 + 0.35,
+    drift: (Math.random() - 0.5) * 0.6,
+  }));
+}
+
+function animateSnowfall() {
+  snowflakes.forEach((flake) => {
+    flake.x += flake.drift;
+    flake.y += flake.speedY;
+
+    if (flake.y > window.innerHeight + 8) {
+      flake.y = -8;
+      flake.x = Math.random() * window.innerWidth;
+    }
+
+    if (flake.x > window.innerWidth + 10) flake.x = -10;
+    if (flake.x < -10) flake.x = window.innerWidth + 10;
+
+    fireworksCtx.globalAlpha = 0.75;
+    fireworksCtx.fillStyle = "#ffffff";
+    fireworksCtx.beginPath();
+    fireworksCtx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+    fireworksCtx.fill();
+  });
 }
 
 function burst(x, y, count = 60) {
@@ -115,6 +140,7 @@ function burst(x, y, count = 60) {
 
 function animateFireworks() {
   fireworksCtx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+  animateSnowfall();
 
   fireworks = fireworks.filter((spark) => spark.life > 0);
 
@@ -170,7 +196,6 @@ if (revealMessageBtn && specialVideoWrapper && specialVideo) {
 
 window.addEventListener("resize", resizeCanvas);
 
-generateCodeRain();
 runIntroSequence();
 setupRevealObserver();
 setupGallery();
